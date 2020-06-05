@@ -2,10 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const userRoute = require('./routes/userRoute');
+const db = require('./infras/configDB');
 
 if (process.env.NODE_ENV !== 'production'){
     dotenv.config();
 }
+
+db.initDb();
 
 const app = express();
 
