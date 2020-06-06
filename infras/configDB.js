@@ -1,6 +1,6 @@
-const Pool = require('pg').Pool
+const Pool = require('pg').Pool;
 
-var conectdb;
+var pool;
 
 exports.initDb = ()=>{
     pool = new Pool({
@@ -11,7 +11,6 @@ exports.initDb = ()=>{
         port: process.env.DB_PORT,
     });
     exports.pool = pool;
-
 };
 
 
