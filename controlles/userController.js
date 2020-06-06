@@ -27,21 +27,32 @@ exports.createUser = (req,res,next) => {
       });    
 
     }
+    res.status(200).json({
+      message: 'Usuario creado correctamente',
+      user: resp,
+      id: Date.now(),
+    });    
+
+  });
+   
+};
+
+exports.readUserById = (req, res, next)=>{
+  const userId = req.params.id;
+
+  conectdb.pool.query('SELECT * FROM usuario WHERE userid = $1',[userId],(error, results)=> {
+    if (error){
+      res.status(400).json({
+        message: 'El usuario no pudo ser encontrado',
+        id: Date.now(),
+      });
+    }
+    res.status(200).json(results.rows)({
+      message: 'Usuario encontrado',
+      user: resp,rows,
+      id: Date.now(),
+    })
+    
   })
 
-  /*
-  fs.writeFile(  
-    `./users/${name}-${Date.now().toString()}.txt`, 
-    JSON.stringify(data),
-    function (err) {
-      if (err) throw err;
-      console.log('Registro del usuario realizado correctamente');
-    }
-  ); 
-*/
-  res.status(200).json({
-    message: 'Usuario creado correctamente',
-    user: res,
-    id: Date.now(),
-  });    
-};
+}
