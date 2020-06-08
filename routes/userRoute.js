@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/user', userController.createUser);
 //read-leer
 router.get('/user', userController.readUser);
-//readid-leer por id
+//read/id-leer por id
 router.get('/user/:id', userController.readUserById);
 //update-actualizar
 

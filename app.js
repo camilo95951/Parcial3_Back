@@ -32,6 +32,10 @@ app.use(bodyParser.json());
 
 app.use(userRoute);
 
+app.use('/', (req, res, next) => {
+  res.status(200).json({ app: 'La aplicacion esta ok!'});
+});
+
 var server = app.listen(process.env.PORT || 8080, () => {
   console.log(`Servidor iniciado en el puerto ${process.env.PORT || 8080}`);
 });
